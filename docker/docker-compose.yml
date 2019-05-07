@@ -25,6 +25,7 @@ services:
       - 9300:9300
     environment:
       discovery.type: single-node
+      TZ: Asia/Shanghai
   oap:
     image: skywalking/oap
     container_name: oap
@@ -38,6 +39,8 @@ services:
       - 12800:12800
     volumes:
       - ./config:/skywalking/config:ro
+    environment:
+      TZ: Asia/Shanghai
   ui:
     image: skywalking/ui
     container_name: ui
@@ -47,6 +50,7 @@ services:
       - oap
     restart: always
     ports:
-      - 8080:8080
+      - 8480:8080
     environment:
       collectorListOfServers: oap:12800
+      TZ: Asia/Shanghai
